@@ -149,9 +149,9 @@ stage3-foreign:
 stage4:
 	$(call progress_out,Run Stage 4)
 	$(call progress_out,Install ceres-initrd)
-	rm -rf $(STAGINGDIR)/tmp/ceres-initrd
-	git clone --depth 1 git@gitlab.com:ceres/ceres-initrd.git $(STAGINGDIR)/tmp/ceres-initrd || true
-	chroot $(STAGINGDIR) bash -c "cd /tmp/ceres-initrd/; rm -rf .git; make install"
+	rm -rf $(STAGINGDIR)/tmp/ceres-init-generic
+	git clone --depth 1 https://github.com/ceres/ceres-init-generic.git $(STAGINGDIR)/tmp/ceres-init-generic || true
+	chroot $(STAGINGDIR) bash -c "cd /tmp/ceres-init-generic/; rm -rf .git; make install"
 
 stage5:
 	$(call progress_out,Run Stage 5)
