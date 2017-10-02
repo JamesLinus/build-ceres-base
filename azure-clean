@@ -1,0 +1,6 @@
+#!/bin/sh
+
+sudo make clean \
+	STAGINGDIR=/mnt/resource/ceres-base \
+	STAGINGIMAGE=/mnt/resource/ceres-base-${TARGETARCH:=`dpkg --print-architecture`}.img \
+	STAGINGSQUASHIMAGE=/mnt/resource/ceres-base-${TARGETARCH:=`dpkg --print-architecture`}.squash.img

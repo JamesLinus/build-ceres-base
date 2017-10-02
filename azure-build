@@ -1,0 +1,16 @@
+#!/bin/sh
+
+sudo make $1 \
+	STAGINGDIR=/mnt/resource/ceres-base \
+	STAGINGIMAGE=/mnt/resource/ceres-base-${TARGETARCH:=`dpkg --print-architecture`}.img \
+	STAGINGSQUASHIMAGE=/mnt/resource/ceres-base-${TARGETARCH:=`dpkg --print-architecture`}.squash.img \
+	STAGINGIMAGESIZE=384M \
+	TARGETARCH=${TARGETARCH:=`dpkg --print-architecture`} \
+	TARGETKERNEL=${TARGETKERNEL:=linux-image-`dpkg --print-architecture`}
+
+if [ $? -eq 0 ]; then
+	if [ -d /var/www/html ]; then
+		sudo mkdir -p /var/www/html/${TARGETARCH:=`dpkg --print-architecture`}-testing/
+		sudo cp /mnt/resource/ceres-base-${TARGETARCH:=`dpkg --print-architecture`}.* /var/www/html/${TARGETARCH:=`dpkg --print-architecture`}-testing/
+	fi
+fi
